@@ -1,0 +1,43 @@
+{
+  "nomor_surat_tugas": "",
+  "nama_kegiatan": "",
+  "tahun_anggaran_kegiatan": "",
+  "hari_pelaksanaan": "",
+  "tanggal_pelaksanaan": "",
+  "tempat_pelaksanaan": "",
+  "kota": "",
+  "tanggal": "",
+  "menimbang": [
+    "bahwa dalam rangka meningkatkan kualitas sumber daya manusia dan pemantapan pelaksanaan tugas-tugas peradilan, serta mewujudkan kemampuan di bidang teknis Peradilan maka perlu diadakan Diseminasi Penegak Hukum dalam Penyelesaian Perkara di lingkungan Peradilan Umum Tahun Anggaran 2025;",
+    "bahwa untuk itu perlu menunjuk para peserta Kegiatan Diseminasi Penegak Hukum dalam Penyelesaian Perkara di lingkungan Peradilan Umum untuk mengikuti kegiatan tersebut."
+  ],
+  "dasar_hukum": [
+    "Undang-Undang Nomor 31 Tahun 1999 tentang Pemberantasan Tindak Pidana Korupsi;",
+    "Undang-Undang Nomor 1 Tahun 2004 tentang Perbendaharaan Negara (LN. Tahun 2004 Nomor 5 TLN Nomor 4355);",
+    "Undang-Undang Nomor 3 Tahun 2009 tentang Perubahan Kedua atas Undang-Undang Nomor 14 Tahun 1985 tentang Mahkamah Agung RI;",
+    "Undang-Undang Nomor 49 Tahun 2009 tentang Perubahan Kedua atas Undang-undang Nomor 2 Tahun 1986 tentang Peradilan Umum;",
+    "Undang- Undang Nomor 5 Tahun 2014 tentang Aparatur Sipil Negara (Lembaran Negara Republik Indonesia tahun 2014 Nomor 6, tambahan Lembaran Negara Republik Indonesia Nomor 5494);",
+    "Keputusan Presiden Nomor 21 Tahun 2004 tentang Pengalihan Organisasi, Administrasi dan Finansial di lingkungan Peradilan Umum, Peradilan Agama, dan Peradilan Tata Usaha Negara ke Mahkamah Agung;",
+    "Peraturan Mahkamah Agung Republik Indonesia Nomor 7 Tahun 2015 tentang Organisasi dan Tata Kerja Kepaniteraan dan Kesekretariatan Peradilan;",
+    "Daftar Isian Pelaksanaan Anggaran (DIPA) Direktorat Jenderal Badan Peradilan Umum Tahun Anggaran 2025, Nomor: SP DIPA-005.03.1.097450/2025 tanggal 2 Desember 2024;",
+    "Keputusan Kuasa Pengguna Anggaran/Pengguna Barang Direktorat Jenderal Badan Peradilan Umum Nomor: 383/DJU.1/SK.KU.1.1/XII/2024 tanggal 30 Desember 2024 tentang Penunjukan Pejabat Pembuat Komitmen (PPK), Pejabat Penandatangan Surat Perintah Membayar (PPSPM) dan Bendahara Pengeluaran pada Direktorat Jenderal Badan Peradilan Umum Tahun Anggaran 2025."
+  ],
+  "peserta": [
+    {
+      "no": 1,
+      "nama": "Nursyam, S.H., M.Hum.",
+      "nip": "196308131988031005",
+      "jabatan": "Ketua Pengadilan",
+      "satker": "Pengadilan Tinggi Banda Aceh",
+      "gol": "IV/e"
+    },
+    {
+      "no": 2,
+      "nama": "M Joni Kemri, S.Pi., S.H.",
+      "nip": "1271041708690014",
+      "jabatan": "Hakim Ad Hoc Tipikor",
+      "satker": "Pengadilan Tinggi Banda Aceh",
+      "gol": "IV/a"
+    }
+  ]
+}
