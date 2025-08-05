@@ -25,19 +25,35 @@
   "peserta": [
     {
       "no": 1,
-      "nama": "Nursyam, S.H., M.Hum.",
-      "nip": "196308131988031005",
-      "jabatan": "Ketua Pengadilan",
+      "nama": "Dr. H. Taqwaddin, S.H., S.E., M.S.",
+      "nip": "1106121111630002",
+      "jabatan": "Hakim Ad Hoc Tipikor",
+      "satker": "Pengadilan Tinggi Banda Aceh",
+      "gol": "IV/c"
+    },
+    {
+      "no": 2,
+      "nama": "H. Makaroda Hafat, S.H., M.Hum.",
+      "nip": "196305301988031003",
+      "jabatan": "Hakim Tinggi",
       "satker": "Pengadilan Tinggi Banda Aceh",
       "gol": "IV/e"
     },
     {
-      "no": 2,
-      "nama": "M Joni Kemri, S.Pi., S.H.",
-      "nip": "1271041708690014",
-      "jabatan": "Hakim Ad Hoc Tipikor",
+      "no": 3,
+      "nama": "Irwan Efendi, S.H., M.Hum.",
+      "nip": "196505041992121001",
+      "jabatan": "Hakim Tinggi",
       "satker": "Pengadilan Tinggi Banda Aceh",
-      "gol": "IV/a"
+      "gol": "IV/e"
+    },
+    {
+      "no": 4,
+      "nama": "Aimafni Arli, S.H., M.H.",
+      "nip": "196703111992122001",
+      "jabatan": "Hakim Tinggi",
+      "satker": "Pengadilan Tinggi Banda Aceh",
+      "gol": "IV/e"
     }
   ]
 }

@@ -1,13 +1,12 @@
 from typing import List, Dict
 
 class SuratTugasData:
-    def __init__(self, no: int, nama: str, nip: str, jabatan: str, satker: str, gol: str):
+    def __init__(self, no: int, nama: str, nip: str, jabatan: str, satker: str):
         self.no = no
         self.nama = nama
         self.nip = nip
         self.jabatan = jabatan
         self.satker = satker
-        self.gol = gol
 
 def parse_surat_tugas_data(data: List[Dict]) -> List[SuratTugasData]:
     surat_tugas_list = []

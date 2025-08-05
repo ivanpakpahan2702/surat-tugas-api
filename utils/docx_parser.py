@@ -2,6 +2,7 @@ from docx import Document
 import docx.oxml.shared
 import os
 from docx.oxml.ns import qn
+from docx.oxml import OxmlElement
 import string
 
 
@@ -47,16 +48,39 @@ def insert_numbered_paragraphs_in_tables(doc, placeholder, items, style):
                             p_element.getparent().remove(p_element)
                             return
 
+# === Tambahan fungsi untuk menjaga paragraf tidak terpisah antar halaman ===
+def set_keep_with_next(paragraph, keep=True):
+    pPr = paragraph._element.get_or_add_pPr()
+    keepNext = OxmlElement('w:keepNext')
+    if keep:
+        pPr.append(keepNext)
+
+def set_keep_lines(paragraph, keep=True):
+    pPr = paragraph._element.get_or_add_pPr()
+    keepLines = OxmlElement('w:keepLines')
+    if keep:
+        pPr.append(keepLines)
+
+def keep_paragraphs_together(doc, start_text):
+    """Set keepNext dan keepLines dari paragraf yang dimulai dari `start_text` hingga akhir dokumen"""
+    found = False
+    for p in doc.paragraphs:
+        if start_text in p.text:
+            found = True
+        if found:
+            set_keep_with_next(p)
+            set_keep_lines(p)
+
+# === Fungsi utama ===
 def generate_surat_tugas(peserta, surat_info, template_path=None, output_path=None):
     if template_path is None:
-        # template_path = "templates/templates.docx"
         template_path = "templates/surat_tugas_template.docx"
     if output_path is None:
         output_path = "output.docx"
 
     doc = Document(template_path)
 
-    # Ganti placeholder lain (kecuali menimbang dan dasar hukum)
+    # Ganti placeholder
     replacements = {
         "{{nomor_surat_tugas}}": surat_info.get("nomor_surat_tugas", ""),
         "{{NAMA_KEGIATAN}}": surat_info.get("nama_kegiatan", ""),
@@ -78,7 +102,7 @@ def generate_surat_tugas(peserta, surat_info, template_path=None, output_path=No
     if isinstance(dasar_hukum, str):
         dasar_hukum = [dasar_hukum]
 
-    # Sisipkan daftar menimbang dan dasar hukum dengan style berbeda
+    # Sisipkan daftar menimbang dan dasar hukum
     if len(menimbang) == 1:
         insert_numbered_paragraphs_in_tables(doc, "{{menimbang}}", menimbang, style='Normal Font')
     else:
@@ -96,7 +120,7 @@ def generate_surat_tugas(peserta, surat_info, template_path=None, output_path=No
 
     for idx, item in enumerate(peserta, start=1):
         row_cells = table.add_row().cells
-        values = [f"{idx}.", item.nama, item.nip, item.jabatan, item.satker]  # NO dengan titik
+        values = [f"{idx}.", item.nama, item.nip, item.jabatan, item.satker]
         for i in range(min(len(row_cells), len(values))):
             row_cells[i].text = values[i]
 
@@ -107,6 +131,9 @@ def generate_surat_tugas(peserta, surat_info, template_path=None, output_path=No
         trPr = docx.oxml.shared.OxmlElement('w:trPr')
         tr.append(trPr)
     trPr[0].append(docx.oxml.shared.OxmlElement('w:tblHeader'))
+
+    # Terapkan keepLines dan keepWithNext dari kata "Untuk"
+    keep_paragraphs_together(doc, "Untuk")
 
     doc.save(output_path)
     return output_path
