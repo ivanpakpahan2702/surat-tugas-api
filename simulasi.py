@@ -3,7 +3,7 @@ from utils.docx_parser import generate_surat_tugas
 from model_surat_tugas.data_types import parse_surat_tugas_data
 from docx2pdf import convert
 
-with open("data_simulasi_1.json") as f:
+with open("data_simulasi.json") as f:
     data = json.load(f)
 
 # with open("data_simulasi_1.json") as f:
