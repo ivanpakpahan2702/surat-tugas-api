@@ -2,6 +2,7 @@ from docx import Document
 import docx.oxml.shared
 from docx.oxml import OxmlElement
 from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.enum.table import WD_ALIGN_VERTICAL
 from docx.oxml.ns import qn
 import os
 
@@ -46,7 +47,7 @@ def inline_replace(paragraph, key, val):
         paragraph._element.remove(paragraph.runs[i]._element)
     paragraph.add_run(text)
 
-# --- Fungsi sisip paragraf bernomor (mendukung \n sebagai baris baru) ---
+# --- Fungsi sisip paragraf bernomor ---
 def insert_numbered_paragraphs_in_tables(doc, placeholder, items, style):
     for table in doc.tables:
         for row in table.rows:
@@ -157,16 +158,34 @@ def generate_surat_tugas(peserta, surat_info, no_template=2, template_path=None,
             values = [f"{idx}.", nama_nip, item.jabatan, item.satker]
 
         for i in range(min(len(row_cells), len(values))):
-            cell_para = row_cells[i].paragraphs[0]
+            cell = row_cells[i]
+            cell_para = cell.paragraphs[0]
             for r in cell_para.runs:
                 cell_para._element.remove(r._element)
             cell_para.add_run(values[i])
-            if i == 0:
-                try:
-                    cell_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
-                except Exception:
-                    pass
 
+            # === Penentuan alignment berdasarkan kolom ===
+            try:
+                if i == 0:
+                    # Kolom NO → align center
+                    cell_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                    cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
+                elif no_template == 2 and i in [2, 3]:
+                    # Kolom jabatan dan satker → align left
+                    cell_para.alignment = WD_ALIGN_PARAGRAPH.LEFT
+                    cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
+                elif no_template == 1 and i in [3, 4]:
+                    # Untuk no_template == 1, jabatan & satker ada di kolom 3 dan 4
+                    cell_para.alignment = WD_ALIGN_PARAGRAPH.LEFT
+                    cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
+                else:
+                    # Default (nama, nip, dll)
+                    cell_para.alignment = WD_ALIGN_PARAGRAPH.LEFT
+                    cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
+            except Exception:
+                pass
+
+    # === Header Tabel ===
     if len(table.rows) >= header_row_count:
         for header_row_idx in range(header_row_count):
             tr = table.rows[header_row_idx]._tr
@@ -177,11 +196,10 @@ def generate_surat_tugas(peserta, surat_info, no_template=2, template_path=None,
             if not trPr_element.xpath('./w:tblHeader'):
                 trPr_element.append(docx.oxml.shared.OxmlElement('w:tblHeader'))
 
-            try:
-                header_cell_para = table.rows[header_row_idx].cells[0].paragraphs[0]
-                header_cell_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            except Exception:
-                pass
+            for i, cell in enumerate(table.rows[header_row_idx].cells):
+                for p in cell.paragraphs:
+                    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
 
     keep_paragraphs_together(doc, "Untuk")
 
